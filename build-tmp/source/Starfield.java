@@ -1,6 +1,22 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Starfield extends PApplet {
+
 Particle[] joe = new Particle[5000];
 
-void setup()
+public void setup()
 {
   background(0);
   size(700, 700);
@@ -10,7 +26,7 @@ void setup()
     }
     joe[0] = new Oddball(350,350);
 }
-void draw()
+public void draw()
 { background(0);
 
     for (int i = 1; i<joe.length; i++)
@@ -49,8 +65,8 @@ class NormalParticle implements Particle
 }
 interface Particle
 {
-  void show();
-  void move();
+  public void show();
+  public void move();
 }
 class Oddball implements Particle
 {
@@ -83,5 +99,14 @@ class Oddball implements Particle
   {
     fill(colors, colors1, colors2);
     ellipse( (float)myX, (float)myY, 50, 50);
+  }
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Starfield" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
   }
 }
